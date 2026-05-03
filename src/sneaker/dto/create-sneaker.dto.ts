@@ -43,7 +43,7 @@ export class CreateSneakerDto {
     @Transform(({value}) => {
         if (['true', true, 1, '1'].includes(value)) return true;
         if (['false', false, 0, '0'].includes(value)) return false; 
-        return value
+        return value;
     })
     isLimitedEdition?: boolean
 
@@ -52,7 +52,7 @@ export class CreateSneakerDto {
     @Transform(({value}) => {
         if (['true', true, 1, '1'].includes(value)) return true;
         if (['false', false, 0, '0'].includes(value)) return false; 
-        return value
+        return value;
     })
     isActive?: boolean;
 }

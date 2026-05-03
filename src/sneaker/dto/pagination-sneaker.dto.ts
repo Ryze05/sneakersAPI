@@ -1,0 +1,57 @@
+import { Transform, Type } from "class-transformer";
+import { IsBoolean, IsNumber, IsOptional, IsString, Min } from "class-validator";
+
+export class PaginationSneakerDto {
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Type(() => Number)
+    limit?: number
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Type(() => Number)
+    offset?: number
+
+    @IsOptional()
+    @IsString()
+    model?: string
+
+    @IsOptional()
+    @IsString()
+    brand?: string
+
+    @IsOptional()
+    @IsString()
+    color?: string
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Type(() => Number)
+    size?: number
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Type(() => Number)
+    minPrice?: number
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    @Type(() => Number)
+    maxPrice?: number
+
+    @IsOptional()
+    @IsBoolean()
+    @Transform(({ value }) => {
+        if ([true, 'true', 1, '1'].includes(value)) return true;
+        if ([false, 'false', 0, '0'].includes(value)) return false;
+
+        return value;
+    })
+    isLimitedEdition?: boolean
+}

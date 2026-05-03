@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SneakerService } from './sneaker.service';
 import { CreateSneakerDto } from './dto/create-sneaker.dto';
 import { UpdateSneakerDto } from './dto/update-sneaker.dto';
+import { PaginationSneakerDto } from './dto/pagination-sneaker.dto';
 
 @Controller('sneaker')
 export class SneakerController {
@@ -13,8 +14,8 @@ export class SneakerController {
   }
 
   @Get()
-  findAll() {
-    return this.sneakerService.findAll();
+  findAll(@Query() paginationSneakerDto: PaginationSneakerDto) {
+    return this.sneakerService.findAll(paginationSneakerDto);
   }
 
   @Get(':id')
