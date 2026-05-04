@@ -9,34 +9,34 @@ export class CreateSneakerDto {
     @Matches(/^[A-Z]{3,10}-\d{4}$/, {
         message: `The SKU is invalid. It must be in the format BRAND-0000 (e.g., NIKE-1234)`
     })
-    sku!: string
+    sku!: string;
 
     @IsString()
     @IsNotEmpty()
     @IsLowercase()
-    model!: string
+    model!: string;
 
     @IsString()
     @IsNotEmpty()
     @IsLowercase()
-    brand!: string
+    brand!: string;
 
     @IsNumber()
     @IsNotEmpty()
     @Min(0)
     @Type(() => Number)
-    size!: number
+    size!: number;
 
     @IsString()
     @IsNotEmpty()
     @IsLowercase()
-    color!: string
+    color!: string;
 
     @IsNumber()
     @IsNotEmpty()
     @Min(0)
     @Type(() => Number)
-    price!: number
+    price!: number;
 
     @IsBoolean()
     @IsOptional()
@@ -45,7 +45,7 @@ export class CreateSneakerDto {
         if (['false', false, 0, '0'].includes(value)) return false; 
         return value;
     })
-    isLimitedEdition?: boolean
+    isLimitedEdition?: boolean;
 
     @IsBoolean()
     @IsOptional()

@@ -18,9 +18,9 @@ export class SneakerController {
     return this.sneakerService.findAll(paginationSneakerDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sneakerService.findOne(+id);
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.sneakerService.findOne(term);
   }
 
   @Patch(':id')

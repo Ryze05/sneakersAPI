@@ -1,5 +1,5 @@
 import { Transform, Type } from "class-transformer";
-import { IsBoolean, IsNumber, IsOptional, IsString, Min } from "class-validator";
+import { IsBoolean, IsEnum, IsLowercase, IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 export class PaginationSneakerDto {
 
@@ -7,43 +7,54 @@ export class PaginationSneakerDto {
     @IsNumber()
     @Min(0)
     @Type(() => Number)
-    limit?: number
+    limit?: number;
 
     @IsOptional()
     @IsNumber()
     @Min(0)
     @Type(() => Number)
-    offset?: number
+    offset?: number;
 
     @IsOptional()
     @IsString()
-    model?: string
+    model?: string;
 
     @IsOptional()
     @IsString()
-    brand?: string
+    brand?: string;
 
     @IsOptional()
     @IsString()
-    color?: string
+    color?: string;
 
     @IsOptional()
     @IsNumber()
     @Min(0)
     @Type(() => Number)
-    size?: number
+    size?: number;
 
     @IsOptional()
     @IsNumber()
     @Min(0)
     @Type(() => Number)
-    minPrice?: number
+    minPrice?: number;
 
     @IsOptional()
     @IsNumber()
     @Min(0)
     @Type(() => Number)
-    maxPrice?: number
+    maxPrice?: number;
+
+    @IsOptional()
+    @IsString()
+    @IsLowercase()
+    sortBy?: string = 'price'
+
+    @IsOptional()
+    @IsEnum(['asc', 'desc'], {
+        message: `sortOrder must have the following values: [asc, desc]`
+    })
+    sortOrder?: string = 'asc'
 
     @IsOptional()
     @IsBoolean()

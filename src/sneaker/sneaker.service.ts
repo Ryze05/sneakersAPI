@@ -3,9 +3,10 @@ import { CreateSneakerDto } from './dto/create-sneaker.dto';
 import { UpdateSneakerDto } from './dto/update-sneaker.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Sneaker } from './entities/sneaker.entity';
-import { Model } from 'mongoose';
+import { Model, SortOrder } from 'mongoose';
 import { PaginationSneakerDto } from './dto/pagination-sneaker.dto';
 import { PaginatedResponse } from '../common/interfaces/pagination.interface';
+import { SneakerFilters } from './interfaces/sneaker-filters.interface';
 
 @Injectable()
 export class SneakerService {
@@ -28,29 +29,34 @@ export class SneakerService {
 
   async findAll(paginationSneakerDto: PaginationSneakerDto): Promise<PaginatedResponse<Sneaker>> {
 
-    const { limit = 10, offset = 0, model, brand, color, size, minPrice, maxPrice, isLimitedEdition } = paginationSneakerDto;
+    const { limit = 10, offset = 0, model, brand, color, size, minPrice, maxPrice, isLimitedEdition, sortBy = 'price', sortOrder = 'asc' } = paginationSneakerDto;
 
-    const query: any = {};
+    const query: SneakerFilters = {};
 
-    if (model) query.model = model;
+    if (model) query.model = { $regex: model, $options: 'i' };
 
-    if (brand) query.brand = brand;
+    if (brand) query.brand = { $regex: brand, $options: 'i' };
 
-    if (color) query.color = color
+    if (color) query.color = color.toLowerCase();
 
     if (isLimitedEdition !== undefined) query.isLimitedEdition = isLimitedEdition;
 
-    if (size) query.size = size
+    if (size) query.size = size;
 
     if (minPrice !== undefined || maxPrice !== undefined) {
-      query.price = {}
+      query.price = {};
 
-      if (minPrice !== undefined) query.price.$gte = minPrice
-      if (maxPrice !== undefined) query.price.$lte = maxPrice
+      if (minPrice !== undefined) query.price.$gte = minPrice;
+      if (maxPrice !== undefined) query.price.$lte = maxPrice;
     }
 
+    // Ordenación dinámica
+    const key = ['brand', 'model', 'size', 'price'].includes(sortBy) ? sortBy : 'price';
+    const value = (sortOrder === 'desc') ? -1 : 1;
+    const sort: { [key: string]: SortOrder } = { [key] :  value};
+
     const [sneakers, total] = await Promise.all([
-      this.sneakerModel.find(query).limit(limit).skip(offset).sort({ price: 1 }).exec(),
+      this.sneakerModel.find(query).limit(limit).skip(offset).sort(sort).exec(),
       this.sneakerModel.countDocuments(query)
     ])
 
@@ -71,7 +77,8 @@ export class SneakerService {
     };
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
+    
     return `This action returns a #${id} sneaker`;
   }
 
