@@ -23,9 +23,9 @@ export class SneakerController {
     return this.sneakerService.findOne(term);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSneakerDto: UpdateSneakerDto) {
-    return this.sneakerService.update(+id, updateSneakerDto);
+  @Patch(':term')
+  update(@Param('term') term: string, @Body() updateSneakerDto: UpdateSneakerDto) {
+    return this.sneakerService.update(term, updateSneakerDto);
   }
 
   @Delete(':id')

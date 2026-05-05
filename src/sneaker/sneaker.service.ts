@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CreateSneakerDto } from './dto/create-sneaker.dto';
 import { UpdateSneakerDto } from './dto/update-sneaker.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Sneaker } from './entities/sneaker.entity';
-import { Model, SortOrder } from 'mongoose';
+import { isValidObjectId, Model, SortOrder } from 'mongoose';
 import { PaginationSneakerDto } from './dto/pagination-sneaker.dto';
 import { PaginatedResponse } from '../common/interfaces/pagination.interface';
 import { SneakerFilters } from './interfaces/sneaker-filters.interface';
@@ -20,7 +20,7 @@ export class SneakerService {
 
   async create(createSneakerDto: CreateSneakerDto): Promise<Sneaker> {
     try {
-      const sneaker = await this.sneakerModel.insertOne(createSneakerDto);
+      const sneaker = await this.sneakerModel.create(createSneakerDto);
       return sneaker;
     } catch (error) {
       this.handleException(error);
@@ -77,13 +77,25 @@ export class SneakerService {
     };
   }
 
-  findOne(id: string) {
-    
-    return `This action returns a #${id} sneaker`;
+  async findOne(term: string): Promise<Sneaker> {
+
+    let sneacker: Sneaker | null = null;
+  
+    if (isValidObjectId(term)) {
+      sneacker = await this.sneakerModel.findById(term);
+    }
+
+    if (!sneacker) {
+      sneacker = await this.sneakerModel.findOne({sku: term}); 
+    }
+
+    if (!sneacker) throw new NotFoundException();
+
+    return sneacker
   }
 
-  update(id: number, updateSneakerDto: UpdateSneakerDto) {
-    return `This action updates a #${id} sneaker`;
+  update(term: string, updateSneakerDto: UpdateSneakerDto) {
+    return `This action updates a #${term} sneaker`;
   }
 
   remove(id: number) {
