@@ -65,7 +65,7 @@ export class SneakerService {
     const currentPage = Math.floor(offset / limit) + 1;
 
     if (currentPage > lastPage && total > 0) {
-      throw new BadRequestException(`La página ${currentPage} no existe. La última es la ${lastPage}`);
+      throw new BadRequestException(`The page ${currentPage} does not exist. The last page is ${lastPage}.`);
     }
 
     return {

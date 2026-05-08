@@ -1,19 +1,21 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { SneakerModule } from './sneaker/sneaker.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { EnvConfig } from './common/config/env.config';
+import { JoiValidationSchema } from './common/config/Joi.validator';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
+      load: [EnvConfig],
+      validationSchema: JoiValidationSchema
     }),
     SneakerModule,
     MongooseModule.forRoot(process.env.MONGO_URL!)
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
