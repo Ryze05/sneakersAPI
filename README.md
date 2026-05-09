@@ -36,14 +36,14 @@ Está diseñada siguiendo una arquitectura modular y preparada para entornos pro
 
 ## 🚀 Instalación y Ejecución
 
-La forma más rápida de probar la API es utilizando **Docker**.
+La forma más profesional y rápida de probar la API es utilizando **Docker**.
 
 ### Opción 1: Docker (Recomendado)
 
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/Ryze05/sneackersAPI.git
+git clone https://github.com/Ryze05/sneakersAPI.git
 ```
 
 2. Levanta los contenedores (esto creará la base de datos y la API automáticamente):
@@ -54,20 +54,27 @@ docker-compose up --build
 
 3. Accede a la documentación en: <http://localhost:3000/api>
 
-### Opción 2: Desarrollo Loca
+### Opción 2: Desarrollo Local
 
-1. Instala las dependencias:
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/Ryze05/sneakersAPI.git
+```
+
+2. Instala las dependencias:
 
 ```bash
 npm install
 ```
 
-2. Configura las variables de entorno:
+3. Levanta solo la base de datos con Docker:
 
-   * Copia el archivo `.env.template` a un nuevo archivo `.env`.
-   * Asegúrate de tener una instancia de MongoDB corriendo en `localhost:27017`
+```bash
+docker-compose up mongodb -d
+```
 
-3. Ejecuta la aplicación:
+4. Configura tu `.env` (usa `.env.template` como base) y arranca la app::
 
 ```bash
 npm run start:dev
