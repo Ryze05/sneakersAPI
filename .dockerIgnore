@@ -8,6 +8,7 @@ artifacts
 .gitignore
 
 .env
+.env.prod
 .env.template
 
 Dockerfile

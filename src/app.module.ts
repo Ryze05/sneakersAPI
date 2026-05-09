@@ -11,7 +11,8 @@ import { SeedModule } from './seed/seed.module';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [EnvConfig],
-      validationSchema: JoiValidationSchema
+      validationSchema: JoiValidationSchema,
+      envFilePath: process.env.NODE_ENV === 'prod' ? '.env.prod' : '.env'
     }),
     SneakerModule,
     MongooseModule.forRoot(process.env.MONGO_URL!),

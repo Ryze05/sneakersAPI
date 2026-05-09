@@ -36,9 +36,11 @@ Está diseñada siguiendo una arquitectura modular y preparada para entornos pro
 
 ## 🚀 Instalación y Ejecución
 
-La forma más profesional y rápida de probar la API es utilizando **Docker**.
+La API está configurada para detectar automáticamente el entorno de ejecución.
 
-### Opción 1: Docker (Recomendado)
+### Opción 1: Docker (Entorno de Producción)
+
+Ideal para probar la aplicación completa con un solo comando. Docker inyectará automáticamente la configuración de producción.
 
 1. Clona el repositorio:
 
@@ -46,7 +48,7 @@ La forma más profesional y rápida de probar la API es utilizando **Docker**.
 git clone https://github.com/Ryze05/sneakersAPI.git
 ```
 
-2. Levanta los contenedores (esto creará la base de datos y la API automáticamente):
+1. Levanta los contenedores:
 
 ```bash
 docker-compose up --build
@@ -74,11 +76,22 @@ npm install
 docker-compose up mongodb -d
 ```
 
-4. Configura tu `.env` (usa `.env.template` como base) y arranca la app::
+4. Copia el archivo `.env.template` a `.env` y arranca la app:
 
 ```bash
 npm run start:dev
 ```
+
+---
+
+## ⚙️ Gestión de Entornos
+
+El proyecto utiliza una estrategia de **Multi-Environment Config** gestionada por NestJS y Docker:
+
+* **Desarrollo (`.env`):** Configurado para conectar a `localhost`. Se activa automáticamente al correr en local.
+* **Producción (`.env.prod`):** Configurado para la red interna de Docker. Se activa mediante la variable de sistema `NODE_ENV=prod` definida en el `Dockerfile`.
+
+Esta separación permite que el mismo código sea desplegable en cualquier infraestructura sin cambios manuales.
 
 ---
 
