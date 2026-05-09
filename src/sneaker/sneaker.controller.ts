@@ -48,12 +48,4 @@ export class SneakerController {
   remove(@Param('term') term: string) {
     return this.sneakerService.remove(term);
   }
-
-  @Post('seed')
-  @ApiOperation({ summary: 'Reset and load database with test data' })
-  @ApiResponse({ status: 201, description: 'Database successfully seeded.' })
-  @ApiResponse({ status: 500, description: 'Internal server error during seeding.' })
-  seeder() {
-    return this.sneakerService.runSeed();
-  }
 }

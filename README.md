@@ -1,98 +1,117 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 👟 Sneakers API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Sneakers API Overview](assets/imgApi.png)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 📋 Descripción
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API RESTful desarrollada con **NestJS** y **MongoDB**. El proyecto consiste en un sistema de gestión de zapatillas (Sneakers), permitiendo realizar operaciones CRUD completas y búsquedas avanzadas con paginación.
 
-## Project setup
+Está diseñada siguiendo una arquitectura modular y preparada para entornos productivos mediante **Docker**.
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## ✨ Características (Features)
 
-```bash
-# development
-$ npm run start
+* ✅ Documentación Interactiva: Implementación completa con Swagger UI.
+* ✅ Paginación: Control de flujo de datos en el listado de zapatillas.
+* ✅ Validación Estricta: Uso de DTOs y Pipes con class-validator para asegurar la integridad de los datos.
+* ✅ Carga de Datos (Seed): Endpoint especializado para poblar la base de datos con información de prueba rápidamente.
+* ✅ Contenerización: Configuración lista para Docker y Docker Compose.
+* ✅ Seguridad: Validación de variables de entorno y tipado fuerte con TypeScript.
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## 🛠️ Tecnologías utilizadas
 
-## Run tests
+* **Framework:** [NestJS](https://nestjs.com/)
+* **Lenguaje:** [TypeScript](https://www.typescriptlang.org/)
+* **Base de Datos:** [MongoDB](https://www.mongodb.com/)
+* **ODM:** [Mongoose](https://mongoosejs.com/)
+* **Contenerización:** [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
+* **Documentación:** [Swagger](https://swagger.io/)
+
+---
+
+## 🚀 Instalación y Ejecución
+
+La forma más rápida de probar la API es utilizando **Docker**.
+
+### Opción 1: Docker (Recomendado)
+
+1. Clona el repositorio:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/Ryze05/sneackersAPI.git
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+2. Levanta los contenedores (esto creará la base de datos y la API automáticamente):
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker-compose up --build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+3. Accede a la documentación en: <http://localhost:3000/api>
 
-## Resources
+### Opción 2: Desarrollo Loca
 
-Check out a few resources that may come in handy when working with NestJS:
+1. Instala las dependencias:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm install
+```
 
-## Support
+2. Configura las variables de entorno:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   * Copia el archivo `.env.template` a un nuevo archivo `.env`.
+   * Asegúrate de tener una instancia de MongoDB corriendo en `localhost:27017`
 
-## Stay in touch
+3. Ejecuta la aplicación:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm run start:dev
+```
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 📖 Documentación de la API
+
+Una vez que la aplicación esté corriendo, puedes visualizar y probar todos los endpoints desde la interfaz de Swagger:
+
+<http://localhost:3000/api>
+
+**🧪 Datos de prueba (Seed)**
+Para poblar rápidamente la base de datos con zapatillas de ejemplo, realiza una petición POST al siguiente endpoint:
+
+`POST /api/v1/seed`
+
+**Endpoints principales:**
+
+* `GET /api/v1/sneakers` - Obtener todas las zapatillas (Paginado).
+* `GET /api/v1/sneakers/:id` - Obtener una zapatilla por su ID.
+* `POST /api/v1/sneakers` - Crear una nueva zapatilla.
+* `PATCH /api/v1/sneakers/:id` - Actualizar datos de una zapatilla.
+* `DELETE /api/v1/sneakers/:id` - Eliminar una zapatilla.
+
+---
+
+## 🏗️ Estructura del Proyecto
+
+```Plaintext
+src/
+├── common/         # Filtros, DTOs globales e interfaces
+├── config/         # Configuración de variables de entorno (EnvConfiguration)
+├── sneakers/       # Módulo principal (Controller, Service, Schema)
+├── seed/           # Módulo para cargar datos de prueba
+└── main.ts         # Punto de entrada de la aplicación
+```
+
+---
+
+## ✍️ Autor
+
+Hecho por **Rommel Romero**. Puedes encontrarme en:
+
+| [GitHub](https://github.com/Ryze05) | [LinkedIn](https://www.linkedin.com/in/rommel-romero/) |
+| :---: | :---: |

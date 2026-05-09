@@ -24,6 +24,7 @@ async function bootstrap() {
     .setDescription('API for managing sneaker inventory')
     .setVersion('1.0')
     .addTag('sneakers')
+    .addTag('seed')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

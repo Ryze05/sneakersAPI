@@ -14,6 +14,7 @@ import { Sneaker, SneakerSchema } from './entities/sneaker.entity';
         schema: SneakerSchema
       }
     ])
-  ]
+  ],
+  exports: [MongooseModule]
 })
 export class SneakerModule {}

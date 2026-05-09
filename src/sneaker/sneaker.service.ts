@@ -134,19 +134,6 @@ export class SneakerService {
     }
   }
 
-  async runSeed(): Promise<{message: string, itemsInserted: number}> {
-    try {
-      await this.sneakerModel.deleteMany()
-      await this.sneakerModel.insertMany(SNEAKERS_SEED_DATA)
-      return {
-        message: 'Seed executed successfully',
-        itemsInserted: SNEAKERS_SEED_DATA.length
-      }
-    } catch(error) {
-      this.handleException(error);
-    }
-  }
-
   private handleException(error: any): never {
 
     if (error.code === 11000) throw new BadRequestException(`Sneaker already exists in DB: ${JSON.stringify(error.keyValue)}`);
