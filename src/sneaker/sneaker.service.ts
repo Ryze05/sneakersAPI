@@ -7,7 +7,6 @@ import { HydratedDocument, isValidObjectId, Model, SortOrder } from 'mongoose';
 import { QuerySneakerDto } from './dto/query-sneaker.dto';
 import { PaginatedResponse } from '../common/interfaces/pagination.interface';
 import { SneakerFilters } from './interfaces/sneaker-filters.interface';
-import { SNEAKERS_SEED_DATA } from './data/sneaker.data';
 
 @Injectable()
 export class SneakerService {
@@ -19,6 +18,7 @@ export class SneakerService {
     private readonly sneakerModel: Model<Sneaker>
   ) { }
 
+  //! Change type
   async create(createSneakerDto: CreateSneakerDto): Promise<Sneaker> {
     try {
       const sneaker = await this.sneakerModel.create(createSneakerDto);

@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EnvConfig } from './common/config/env.config';
 import { JoiValidationSchema } from './common/config/Joi.validator';
 import { SeedModule } from './seed/seed.module';
+import { BrandModule } from './brand/brand.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { SeedModule } from './seed/seed.module';
         }
       }
     }),
-    SeedModule
+    SeedModule,
+    BrandModule
   ],
   controllers: [],
   providers: [],
